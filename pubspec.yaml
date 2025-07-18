@@ -1,0 +1,34 @@
+name: first_application
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  url_launcher: ^6.1.12
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+     - images/
+
+  fonts:
+    - family: Pacifico
+      fonts:
+      - asset: assets/fonts/Pacifico-Regular.ttf
+
+    - family: Source Code Pro
+      fonts:
+        - asset: assets/fonts/SourceCodePro-VariableFont_wght.ttf

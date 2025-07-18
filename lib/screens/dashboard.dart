@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+import 'profile.dart'; // Make sure this file exists
+import 'homepage.dart'; // Import the login page
+
+class DashboardPage extends StatelessWidget {
+
+  const DashboardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        title: Text('Dashboard', style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white), // Change drawer icon color to white
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.teal),
+              child: Text(
+                'Welcome, ${AppState.name}',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.dashboard),
+              title: Text('Dashboard'),
+              onTap: () {
+                Navigator.pop(context); // Stay on dashboard
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () {
+                // Add navigation to ProfilePage
+                // Navigate to the ProfilePage
+                // If ProfilePage is already in the stack, this will bring it to the front.
+                // If not, it will push a new instance.
+                Navigator.pop(context); // Close the drawer first
+                Navigator.pushReplacement(
+                  // Use pushReplacement to avoid stacking multiple dashboards
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Exit'),
+              onTap: () {
+                // Navigate back to the LoginPage and remove all previous routes
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                  (Route<dynamic> route) => false, // This predicate removes all routes
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center( // Center the content in the body
+        child: Padding(
+          padding: const EdgeInsets.all(16.0), // Add some padding around the content
+          child: Text(
+            'Welcome to the Dashboard!\n ${AppState.name}', // Text to display in the body
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center, // Center the text itself
+          ),
+        ),
+      ),
+    );
+  }
+
+}
