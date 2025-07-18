@@ -7,7 +7,6 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-// app_state.dart
 class AppState {
   static String name = '';
 }
