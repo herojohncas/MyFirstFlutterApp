@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'profile.dart'; // Make sure this file exists
-import 'homepage.dart'; // Import the login page
+import 'profile.dart';
+import 'homepage.dart';
+import 'personal_info.dart';
 
 class DashboardPage extends StatelessWidget {
 
@@ -22,7 +23,7 @@ class DashboardPage extends StatelessWidget {
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.teal),
               child: Text(
-                'Welcome, ${AppState.name}',
+                'Welcome',
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
@@ -50,6 +51,17 @@ class DashboardPage extends StatelessWidget {
               },
             ),
             ListTile(
+              leading: Icon(Icons.info),
+              title: Text('Personal Info'),
+              onTap: () {
+                // Navigate back to the LoginPage and remove all previous routes
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => PersonalInfoPage()),
+                  (Route<dynamic> route) => false, // This predicate removes all routes
+                );
+              },
+            ),ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('Exit'),
               onTap: () {
@@ -68,7 +80,7 @@ class DashboardPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0), // Add some padding around the content
           child: Text(
-            'Welcome to the Dashboard!\n ${AppState.name}', // Text to display in the body
+            'Welcome to the Dashboard!', // Text to display in the body
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center, // Center the text itself
           ),

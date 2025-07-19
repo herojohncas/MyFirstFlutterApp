@@ -7,13 +7,10 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-class AppState {
-  static String name = '';
-}
 
 class _HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,30 +38,11 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 20.0),
                     // App Description
                     Text(
-                      'Hi, I`m Hero. This is a simple Flutter page I created to showcase my knowledge of Flutter.',
+                      'Hi there, I’m Hero. This Flutter page reflects my growing expertise in mobile development, modular architecture, and UI/UX design.',
                       style: TextStyle(fontSize: 18, height: 1.5),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 30.0),
-                    // Name Input
-                    TextFormField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                        labelText: 'Enter your name',
-                        border: OutlineInputBorder(),
-                      ),
-                      onChanged: (value) {
-                        setState(() => AppState.name = value);
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your name first.';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16),
-
                     // Continue Button
                     SizedBox(
                       width: double.infinity,
@@ -74,12 +52,13 @@ class _HomePageState extends State<HomePage> {
                           padding: EdgeInsets.symmetric(vertical: 16),
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardPage()));
-                          }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => DashboardPage()),
+                          );
                         },
                         child: Text(
-                          'Continue',
+                          'Get Started',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -92,11 +71,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    super.dispose();
   }
 }
