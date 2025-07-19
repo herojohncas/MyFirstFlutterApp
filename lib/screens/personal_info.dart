@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:first_application/service/personal_info_service.dart';
+import 'package:first_application/screens/dashboard.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final PersonalInfoService personalInfoService = PersonalInfoService();
-
 
   void handleSubmit() async {
     final fname = fnameController.text.trim();
@@ -31,10 +31,17 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     print("Age: $age");
     print("Address: $address");
 
-    await personalInfoService.insertUserData(fname, mname, lname, email, age, address);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Data inserted successfully')),
+    await personalInfoService.insertUserData(
+      fname,
+      mname,
+      lname,
+      email,
+      age,
+      address,
     );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Data inserted successfully')));
     fnameController.clear();
     mnameController.clear();
     lnameController.clear();
@@ -46,7 +53,19 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("User Info Form")),
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => DashboardPage()),
+            );
+          },
+        ),
+        title: Text("Personal Info Form", style: TextStyle(color: Colors.white)),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -54,14 +73,20 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
             _buildTextField("First Name", fnameController),
             _buildTextField("Middle Name", mnameController),
             _buildTextField("Last Name", lnameController),
-            _buildTextField("Email", emailController, keyboardType: TextInputType.emailAddress),
-            _buildTextField("Age", ageController, keyboardType: TextInputType.number),
+            _buildTextField(
+              "Email",
+              emailController,
+              keyboardType: TextInputType.emailAddress,
+            ),
+            _buildTextField(
+              "Age",
+              ageController,
+              keyboardType: TextInputType.number,
+            ),
             _buildTextField("Address", addressController),
             SizedBox(height: 20),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal,
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
               onPressed: handleSubmit,
               child: Text("Save", style: TextStyle(color: Colors.white)),
             ),
@@ -71,7 +96,11 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     );
   }
 
-  Widget _buildTextField(String label, TextEditingController controller, {TextInputType? keyboardType}) {
+  Widget _buildTextField(
+    String label,
+    TextEditingController controller, {
+    TextInputType? keyboardType,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
