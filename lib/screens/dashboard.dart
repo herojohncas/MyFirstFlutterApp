@@ -4,7 +4,6 @@ import 'homepage.dart';
 import 'personal_info.dart';
 
 class DashboardPage extends StatelessWidget {
-
   const DashboardPage({super.key});
 
   @override
@@ -13,18 +12,32 @@ class DashboardPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text('Dashboard', style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white), // Change drawer icon color to white
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ), // Change drawer icon color to white
         centerTitle: true,
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.teal),
-              child: Text(
-                'Welcome',
-                style: TextStyle(color: Colors.white, fontSize: 24),
+            UserAccountsDrawerHeader(
+              accountName: Text('Oflutter.com'),
+              accountEmail: Text('example@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                child: ClipOval(
+                  child: CircleAvatar(
+                    radius: 70,
+                    backgroundImage: AssetImage('images/profile.jpg'),
+                  ),
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('images/profile-bg3.jpg'),
+                ),
               ),
             ),
             ListTile(
@@ -58,10 +71,12 @@ class DashboardPage extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => PersonalInfoPage()),
-                  (Route<dynamic> route) => false, // This predicate removes all routes
+                  (Route<dynamic> route) =>
+                      false, // This predicate removes all routes
                 );
               },
-            ),ListTile(
+            ),
+            ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('Exit'),
               onTap: () {
@@ -69,16 +84,20 @@ class DashboardPage extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => HomePage()),
-                  (Route<dynamic> route) => false, // This predicate removes all routes
+                  (Route<dynamic> route) =>
+                      false, // This predicate removes all routes
                 );
               },
             ),
           ],
         ),
       ),
-      body: Center( // Center the content in the body
+      body: Center(
+        // Center the content in the body
         child: Padding(
-          padding: const EdgeInsets.all(16.0), // Add some padding around the content
+          padding: const EdgeInsets.all(
+            16.0,
+          ), // Add some padding around the content
           child: Text(
             'Welcome to the Dashboard!', // Text to display in the body
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -88,5 +107,4 @@ class DashboardPage extends StatelessWidget {
       ),
     );
   }
-
 }

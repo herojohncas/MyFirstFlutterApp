@@ -10,6 +10,7 @@ dependencies:
   firebase_core: ^2.30.0
   cloud_firestore: ^4.17.3
   url_launcher: ^6.1.12
+  image_picker: ^1.1.2
   flutter:
     sdk: flutter
 

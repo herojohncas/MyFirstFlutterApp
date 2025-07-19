@@ -47,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('images/background.png'),
+                      image: AssetImage('images/profile-bg3.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),

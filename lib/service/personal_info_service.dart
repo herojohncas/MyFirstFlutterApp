@@ -11,6 +11,7 @@ class PersonalInfoService {
       'email': email,
       'age': age,
       'address': address,
+      // 'imageUrl': imageUrl,
       'timestamp': FieldValue.serverTimestamp(),
     });
   }

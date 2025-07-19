@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:first_application/service/personal_info_service.dart';
 import 'package:first_application/screens/dashboard.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   @override
@@ -38,6 +40,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
       email,
       age,
       address,
+      // imageUrl: imageUrl,
     );
     ScaffoldMessenger.of(
       context,
