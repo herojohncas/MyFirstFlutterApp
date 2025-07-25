@@ -22,8 +22,8 @@ class DashboardPage extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text('Oflutter.com'),
-              accountEmail: Text('example@gmail.com'),
+              accountName: Text('Hero John Cas'),
+              accountEmail: Text('herocas62@gmail.com'),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: CircleAvatar(

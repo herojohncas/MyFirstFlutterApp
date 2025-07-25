@@ -26,6 +26,26 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     final age = ageController.text.trim();
     final address = addressController.text.trim();
 
+    if (fname.isEmpty || lname.isEmpty || age.isEmpty || email.isEmpty || address.isEmpty) {
+      String missingFields = "";
+      if (fname.isEmpty) missingFields += "First Name, ";
+      if (lname.isEmpty) missingFields += "Last Name, ";
+      if (age.isEmpty) missingFields += "Age, ";
+      if (email.isEmpty) missingFields += "Email, ";
+      if (address.isEmpty) missingFields += "Address, ";
+
+      // Remove trailing comma and space
+      if (missingFields.isNotEmpty) {
+        missingFields = missingFields.substring(0, missingFields.length - 2);
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fill in the following fields: $missingFields')),
+      );
+      return;
+    }
+
+
     print("First Name: $fname");
     print("Middle Name: $mname");
     print("Last Name: $lname");
